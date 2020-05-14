@@ -6,10 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from torch.utils import data
 from torchvision import transforms as T
-#data=pd.read_csv('C:/Users/Administrator/Desktop/train2(3).csv')
-#print(data.info())
-#print(data.head())
-#print(data.dtypes)
+
 
 class MyDataSet(data.Dataset):
     def __init__(self,csv_file,train=True,test=False,transform=None):
@@ -22,3 +19,4 @@ class MyDataSet(data.Dataset):
 
     def __getitem__(self, index):
         return self.df.loc[index]
+

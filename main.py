@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 
 # STEP.1:导入原始数据集
-demo=MyDataSet('C:/Users/Administrator/Desktop/train2(3).csv')
+demo=MyDataSet('C:/Users/dell/Desktop/train2(3).csv')
 
 # STEP.2:链接数据操作类
 demo_op = op(demo.df)
@@ -54,6 +54,7 @@ criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-2)
 
 # STEP.8:训练
+print('start train')
 for e in range(200):
     var_x =Variable(torch.from_numpy(train_X)).float()
     var_y = Variable(torch.from_numpy(train_Y)).type(torch.float32)
@@ -64,10 +65,11 @@ for e in range(200):
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
+    print('+')
 
 if (e + 1) % 10 == 0: # 每 100 次输出结果
         print('Epoch: {}, Loss: {:.5f}'.format(e + 1, loss.item()))
-
+print('start test')
 # STEP.9:测试
 model = model.eval()
 pred_x = torch.from_numpy(test_X).type(torch.float32)

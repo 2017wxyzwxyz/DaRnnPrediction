@@ -6,6 +6,8 @@ class op():
         self.df = df
         self.df['纬度'] = self.df['纬度'].astype(float)
         self.df['经度'] = self.df['经度'].astype(float)
+        self.laX, self.laY = self.divide_into_XY()
+        self.longX, self.longY = self.divide_into_XY(latitude = False)
     def divide_into_XY(self, look_back=10, latitude=True):
         dataX, dataY = [], []
         if latitude:
@@ -26,7 +28,8 @@ class op():
         data = scaler_data.fit_transform(input_data)
         return data
 
-    #def divide_into_TV(self,spilt=1):
+    def get_num_features(self):
+        return np.array(self.laX).shape[1]
 
     def test(self):
         print(self.df['经度'])
